@@ -88,6 +88,8 @@ function set-titles-with-path {
 
   if [[ "$TERM_PROGRAM" == 'Apple_Terminal' ]]; then
     printf '\e]7;%s\a' "file://$HOST${absolute_path// /%20}"
+    # Some Terminals.app may need this instead
+    printf '\e]2;%s\a' "file://$HOST${absolute_path// /%20}"
   else
     local abbreviated_path="${absolute_path/#$HOME/~}"
     local truncated_path="${abbreviated_path/(#m)?(#c15,)/...${MATCH[-12,-1]}}"
